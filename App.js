@@ -2,8 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import { API_URL } from "@env";
+import { LoginScreen } from "@screens/Security/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +12,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Home">
               <Stack.Screen
                   name="Home"
-                  component={HomeScreen}
+                  component={LoginScreen}
                   options={{ title: 'Logilink' }}
               />
               <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -22,20 +21,6 @@ export default function App() {
       </NavigationContainer>
   );
 }
-
-function HomeScreen({ navigation }) {
-    console.log(API_URL)
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-            <Button
-                title="Go to Details"
-                onPress={() => navigation.navigate('Dashboard')}
-            />
-        </View>
-    );
-}
-
 
 function Dashboard() {
     return (
