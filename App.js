@@ -3,6 +3,8 @@ import { Button, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { API_URL } from "@env";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -22,6 +24,7 @@ export default function App() {
 }
 
 function HomeScreen({ navigation }) {
+    console.log(API_URL)
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Home Screen</Text>
