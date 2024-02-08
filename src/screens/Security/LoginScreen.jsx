@@ -33,11 +33,13 @@ export const LoginScreen = ({ navigation }) => {
         //     setError(true);
         // }
 
-        navigation.navigate('Dashboard')
+        navigation.push('Dashboard')
     };
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
+            <TopNavigation title='MyApp' alignment='center'/>
+            <Divider/>
             <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 16 }}>
                 <Text style={styles.title}>Connexion</Text>
                 {error

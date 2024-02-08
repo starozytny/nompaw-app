@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { LoginScreen } from "screens/Security/LoginScreen";
 import { Dashboard } from "screens/App/Dashboard";
 
-const { Navigator, Screen } = createNativeStackNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
 const HomeNavigator = () => (
     <Navigator screenOptions={{headerShown: false}}>
