@@ -1,7 +1,7 @@
 import React from "react";
 
 import { View, Text } from "react-native";
-import { getGenericPassword } from "react-native-keychain";
+import * as SecureStore from 'expo-secure-store';
 
 export function Dashboard ()
 {
@@ -16,7 +16,7 @@ export function Dashboard ()
 
 const getData = async (key) => {
     try {
-        const value = await getGenericPassword();
+        const value = await SecureStore.getItemAsync(key);
         if (value !== null) {
             console.log('Données récupérées avec succès :', value);
             return value;

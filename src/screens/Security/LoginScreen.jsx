@@ -5,7 +5,7 @@ import { API_URL } from '@env';
 import axios from 'axios';
 
 import { View, TextInput, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { setGenericPassword } from "react-native-keychain";
+import * as SecureStore from 'expo-secure-store';
 
 export const LoginScreen = ({ navigation }) => {
     const [credentials, setCredentials] = useState({
@@ -25,7 +25,7 @@ export const LoginScreen = ({ navigation }) => {
                 }
             );
 
-            await setGenericPassword("token", response.data.token);
+            await SecureStore.setItemAsync("token", response.data.token);
             console.log('Token', response.data);
 
             navigation.navigate('Dashboard')
