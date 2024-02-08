@@ -1,31 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, Text, View } from 'react-native';
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen } from "@screens/Security/LoginScreen";
+import React from 'react';
+import * as eva from '@eva-design/eva';
 
-const Stack = createNativeStackNavigator();
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
-export default function App() {
-  return (
-      <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
-              <Stack.Screen
-                  name="Home"
-                  component={LoginScreen}
-                  options={{ title: 'Logilink' }}
-              />
-              <Stack.Screen name="Dashboard" component={Dashboard} />
-          </Stack.Navigator>
-        <StatusBar style="auto" />
-      </NavigationContainer>
-  );
-}
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { AppNavigator } from "screens/Navigator/Navigator";
 
-function Dashboard() {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Dashboard</Text>
-        </View>
-    );
-}
+export default () => (
+    <>
+        <IconRegistry icons={EvaIconsPack} />
+        <ApplicationProvider {...eva} theme={{ ...eva.dark }}>
+            <AppNavigator />
+        </ApplicationProvider>
+    </>
+);

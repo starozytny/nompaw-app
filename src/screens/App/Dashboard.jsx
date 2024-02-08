@@ -1,16 +1,31 @@
 import React from "react";
 
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import * as SecureStore from 'expo-secure-store';
+import { Divider, Icon, Layout, TopNavigation, TopNavigationAction } from "@ui-kitten/components";
 
-export function Dashboard ()
+const BackIcon = (props) => (
+    <Icon {...props} name='arrow-back' />
+);
+
+export function Dashboard ({ navigation })
 {
     getData('token').then(r => console.log(r))
 
+    const navigateBack = () => {
+        navigation.goBack();
+    };
+
+    const BackAction = () => (
+        <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
+    );
+
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Details Screen</Text>
-        </View>
+        <SafeAreaView style={{ flex: 1 }}>
+            <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text category='h1'>DETAILS</Text>
+            </Layout>
+        </SafeAreaView>
     );
 }
 
