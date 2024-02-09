@@ -1,14 +1,14 @@
 import React from 'react';
 
+import { View } from "react-native";
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomNavigation, BottomNavigationTab, Icon } from "@ui-kitten/components";
 
 import { LoginScreen } from "screens/Security/LoginScreen";
 import { Dashboard } from "screens/App/Dashboard";
-import { View } from "react-native";
-import { BottomNavigation, BottomNavigationTab, Icon } from "@ui-kitten/components";
-import { Screen2 } from "screens/App/Screen2";
+import { Planificateur } from "screens/App/Planificateur";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -42,7 +42,7 @@ const BottomTabBar = ({ navigation, state }) => (
 const TabNavigator = () => (
     <Navigator tabBar={props => <BottomTabBar {...props} />} screenOptions={{ headerShown: false }}>
         <Screen name='Dashboard' component={Dashboard} />
-        <Screen name='Screen2' component={Screen2} />
+        <Screen name='Planificateur' component={Planificateur} />
     </Navigator>
 );
 
