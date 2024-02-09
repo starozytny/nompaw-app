@@ -1,4 +1,10 @@
 {
+  "strict": {
+    "text-font-family": "barlow-regular",
+
+    "text-heading-1-font-weight": "800",
+    "text-heading-1-font-family": "barlow-bold"
+  },
   "components": {
     "TopNavigation": {
       "meta": {

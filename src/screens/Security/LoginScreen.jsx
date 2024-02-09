@@ -5,8 +5,8 @@ import { API_URL } from '@env';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
-import { View, TextInput, StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
-import { Button, Divider, Layout, TopNavigation } from "@ui-kitten/components";
+import { TextInput, StyleSheet, SafeAreaView } from 'react-native';
+import { Button, Divider, Layout, TopNavigation, Text } from "@ui-kitten/components";
 
 export const LoginScreen = ({ navigation }) => {
     const [credentials, setCredentials] = useState({
@@ -40,8 +40,8 @@ export const LoginScreen = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1 }}>
             <TopNavigation title='MyApp' alignment='center'/>
             <Divider/>
-            <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 16 }}>
-                <Text style={styles.title}>Connexion</Text>
+            <Layout style={styles.container}>
+                <Text style={styles.title} category="h1">Connexion</Text>
                 {error
                     ? <Text>Erreur de connexion</Text>
                     : null
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     title: {
-        fontSize: 24,
         marginBottom: 16,
     },
     input: {
