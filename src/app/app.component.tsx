@@ -10,6 +10,7 @@ import { appMappings, appThemes } from "app/app-theming";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "components/status-bar.component";
 import { appLoading } from "app/app-loading.component";
+import { Image, SafeAreaView, StyleSheet } from "react-native";
 
 const App: React.FC<{ mapping: Mapping, theme: Theme }> = ({ mapping, theme }) => {
 
@@ -19,7 +20,12 @@ const App: React.FC<{ mapping: Mapping, theme: Theme }> = ({ mapping, theme }) =
     const appIsReady = appLoading();
 
     if(!appIsReady){
-        return null;
+        return <SafeAreaView style={styles.container}>
+            <Image
+                style={styles.logo}
+                source={require('assets/images/logo.png')}
+            />
+        </SafeAreaView>;
     }
 
     return (
@@ -42,3 +48,16 @@ const App: React.FC<{ mapping: Mapping, theme: Theme }> = ({ mapping, theme }) =
 export default (): React.ReactElement => (
     <App mapping="eva" theme="dark" />
 );
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: "#222B45"
+    },
+    logo: {
+        width: 200,
+        height: 200,
+    },
+});
