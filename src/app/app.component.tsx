@@ -1,34 +1,42 @@
 import React from 'react';
-import * as eva from '@eva-design/eva';
 
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { AppNavigator } from "screens/Navigator/Navigator";
+
 import { StatusBar } from "react-native";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { Mapping, Theme, Theming } from "services/theme.service";
+import { appMappings, appThemes } from "app/app-theming";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-export default () => {
-    const [theme, setTheme] = React.useState('dark');
+const defaultConfig: { mapping: Mapping, theme: Theme } = {
+    mapping: 'eva',
+    theme: 'dark',
+};
 
-    const toggleTheme = () => {
-        const nextTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(nextTheme);
-    };
+const App: React.FC<{ mapping: Mapping, theme: Theme }> = ({ mapping, theme }) => {
+
+    const [mappingContext, currentMapping] = Theming.useMapping(appMappings, mapping);
+    const [themeContext, currentTheme] = Theming.useTheming(appThemes, mapping, theme);
 
     return (
         <>
             <IconRegistry icons={EvaIconsPack} />
-            <ThemeContext.Provider value={{ theme, toggleTheme }}>
-                <ApplicationProvider {...eva} theme={{ ...eva.dark }}>
-                    <StatusBar />
-                    <AppNavigator />
-                </ApplicationProvider>
-            </ThemeContext.Provider>
+            <ApplicationProvider {...currentMapping} theme={currentTheme}>
+                <Theming.MappingContext.Provider value={mappingContext}>
+                    <Theming.ThemeContext.Provider value={themeContext}>
+                        <SafeAreaProvider>
+                            <StatusBar />
+                            <AppNavigator />
+                        </SafeAreaProvider>
+                    </Theming.ThemeContext.Provider>
+                </Theming.MappingContext.Provider>
+            </ApplicationProvider>
         </>
     )
-};
+}
 
-export const ThemeContext = React.createContext({
-    theme: 'dark',
-    toggleTheme: () => {},
-});
+export default (): React.ReactElement => (
+    <App mapping="eva" theme="dark" />
+);

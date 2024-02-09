@@ -22,6 +22,7 @@ module.exports = function(api) {
           alias: {
             "@app": "./src/app",
             "@screens": "./src/screens",
+            "@services": "./src/services",
           }
         }
       ]
