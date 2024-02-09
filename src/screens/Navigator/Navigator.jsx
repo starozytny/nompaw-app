@@ -7,12 +7,19 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LoginScreen } from "screens/Security/LoginScreen";
 import { Dashboard } from "screens/App/Dashboard";
 import { View } from "react-native";
-import { BottomNavigation, BottomNavigationTab } from "@ui-kitten/components";
+import { BottomNavigation, BottomNavigationTab, Icon } from "@ui-kitten/components";
 import { Screen2 } from "screens/App/Screen2";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
+
+const HomeIcon = (props) => (
+    <Icon {...props} name='home-outline' />
+);
+const CreditCardIcon = (props) => (
+    <Icon {...props} name='credit-card-outline' />
+);
 
 const DarkKittenTheme = {
     ...DarkTheme,
@@ -25,9 +32,10 @@ const DarkKittenTheme = {
 const BottomTabBar = ({ navigation, state }) => (
     <BottomNavigation
         selectedIndex={state.index}
-        onSelect={index => navigation.navigate(state.routeNames[index])}>
-        <BottomNavigationTab title='DASHBOARD'/>
-        <BottomNavigationTab title='SCREEN'/>
+        onSelect={index => navigation.navigate(state.routeNames[index])}
+    >
+        <BottomNavigationTab title='Dashboard' icon={HomeIcon} />
+        <BottomNavigationTab title='Planificateur' icon={CreditCardIcon} />
     </BottomNavigation>
 );
 
