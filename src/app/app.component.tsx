@@ -4,11 +4,11 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 import { AppNavigator } from "screens/Navigator/Navigator";
 
-import { StatusBar } from "react-native";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { Mapping, Theme, Theming } from "services/theme.service";
 import { appMappings, appThemes } from "app/app-theming";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { StatusBar } from "components/status-bar.component";
 
 const defaultConfig: { mapping: Mapping, theme: Theme } = {
     mapping: 'eva',

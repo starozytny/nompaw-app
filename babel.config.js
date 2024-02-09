@@ -23,6 +23,7 @@ module.exports = function(api) {
             "@app": "./src/app",
             "@screens": "./src/screens",
             "@services": "./src/services",
+            "@components": "./src/components",
           }
         }
       ]
