@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { LoginScreen } from "screens/Security/LoginScreen";
 import { Dashboard } from "screens/App/Dashboard";
+import { View } from "react-native";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -24,7 +25,9 @@ const HomeNavigator = () => (
 );
 
 export const AppNavigator = () => (
-    <NavigationContainer theme={DarkKittenTheme}>
-        <HomeNavigator/>
-    </NavigationContainer>
+    <View style={{flex: 1}}>
+        <NavigationContainer theme={DarkKittenTheme}>
+            <HomeNavigator/>
+        </NavigationContainer>
+    </View>
 );

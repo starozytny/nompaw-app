@@ -1,0 +1,93 @@
+{
+  "strict": {
+    "text-font-family": "barlow-regular",
+
+    "text-heading-1-font-weight": "800",
+    "text-heading-1-font-family": "barlow-bold"
+  },
+  "components": {
+    "TopNavigation": {
+      "meta": {
+        "variantGroups": {
+          "alignment": {
+            "center": {
+              "default": true
+            },
+            "start": {
+              "default": false
+            }
+          }
+        }
+      }
+    },
+    "StatusBar": {
+      "meta": {
+        "scope": "mobile",
+        "parameters": {
+          "barStyle": {
+            "type": "string"
+          },
+          "backgroundColor": {
+            "type": "string"
+          }
+        },
+        "appearances": {
+          "default": {
+            "default": true
+          }
+        },
+        "variantGroups": {},
+        "states": {}
+      },
+      "appearances": {
+        "default": {
+          "mapping": {
+            "barStyle": "dark-content",
+            "backgroundColor": "background-basic-color-2"
+          }
+        }
+      }
+    },
+    "SafeAreaLayout": {
+      "meta": {
+        "scope": "mobile",
+        "parameters": {
+          "backgroundColor": {
+            "type": "string"
+          }
+        },
+        "appearances": {
+          "default": {
+            "default": true
+          }
+        },
+        "variantGroups": {
+          "insets": {
+            "top": {
+              "default": false
+            },
+            "bottom": {
+              "default": false
+            }
+          }
+        },
+        "states": {}
+      },
+      "appearances": {
+        "default": {
+          "mapping": {},
+          "variantGroups": {
+            "position": {
+              "top": {
+                "backgroundColor": "background-basic-color-2"
+              },
+              "bottom": {
+                "backgroundColor": "background-basic-color-1"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

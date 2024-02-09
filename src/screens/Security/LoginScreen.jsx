@@ -5,7 +5,7 @@ import { API_URL } from '@env';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
-import { StyleSheet, SafeAreaView, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import { Button, Divider, Layout, TopNavigation, Text, Input, Icon, Spinner } from "@ui-kitten/components";
 
 const LoadingIndicator = (props) => (
