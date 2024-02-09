@@ -5,15 +5,22 @@ import { API_URL } from '@env';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
-import { View, TextInput, StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
-import { Button, Divider, Layout, TopNavigation } from "@ui-kitten/components";
+import { StyleSheet, SafeAreaView, TouchableWithoutFeedback, View } from 'react-native';
+import { Button, Divider, Layout, TopNavigation, Text, Input, Icon, Spinner } from "@ui-kitten/components";
+
+const LoadingIndicator = (props) => (
+    <Spinner size='small' status="basic" />
+);
 
 export const LoginScreen = ({ navigation }) => {
+
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
     });
-    const [error, setError] = useState(false);
+    const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
     const handleLogin = async () => {
         // setError(false);
@@ -33,37 +40,61 @@ export const LoginScreen = ({ navigation }) => {
         //     setError(true);
         // }
 
-        navigation.push('Dashboard')
+        setLoading(true);
+        navigation.push('Dashboard');
     };
+
+    const toggleSecureEntry = () => {
+        setSecureTextEntry(!secureTextEntry);
+    }
+
+    const renderIcon = (props) => {
+        return  <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+            <Icon
+                {...props}
+                name={secureTextEntry ? 'eye-off' : 'eye'}
+            />
+        </TouchableWithoutFeedback>
+    }
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <TopNavigation title='MyApp' alignment='center'/>
+            <TopNavigation title='Nompaw 👋' alignment='center'/>
             <Divider/>
-            <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 16 }}>
-                <Text style={styles.title}>Connexion</Text>
+            <Layout style={styles.container}>
+                <Text style={styles.title} category="h1">Espace membre 🔒</Text>
+                <Text style={styles.subtitle}>
+                    Utilise ton identifiant et mot de passe pour accéder à ton espace !
+                </Text>
                 {error
                     ? <Text>Erreur de connexion</Text>
                     : null
                 }
-                <TextInput
+                <Input
                     style={styles.input}
+                    size='large'
                     placeholder="Nom utilisateur"
+                    value={credentials.username}
                     keyboardType="email-address"
                     autoCapitalize="none"
-                    value={credentials.username}
                     onChangeText={(text) => setCredentials({ ...credentials, username: text })}
                 />
 
-                <TextInput
+                <Input
                     style={styles.input}
+                    size='large'
                     placeholder="Mot de passe"
-                    autoCapitalize="none"
-                    secureTextEntry
                     value={credentials.password}
+                    autoCapitalize="none"
+                    accessoryRight={renderIcon}
+                    secureTextEntry={secureTextEntry}
                     onChangeText={(text) => setCredentials({ ...credentials, password: text })}
                 />
-                <Button onPress={handleLogin}>Se connecter</Button>
+                <Button onPress={handleLogin}
+                        accessoryLeft={loading ? LoadingIndicator : null}
+                >
+                    Se connecter
+                </Button>
             </Layout>
         </SafeAreaView>
     );
@@ -77,17 +108,18 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     title: {
-        fontSize: 24,
-        marginBottom: 16,
+        marginBottom: 4,
+    },
+    subtitle: {
+        textAlign: 'center',
+        marginBottom: 24,
+        opacity: 0.7
     },
     input: {
         width: '100%',
-        height: 40,
-        borderColor: 'gray',
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderRadius: 8,
         marginBottom: 16,
-        paddingLeft: 8,
     },
+    spinner: {
+        color: 'white'
+    }
 });
