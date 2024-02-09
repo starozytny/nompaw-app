@@ -1,6 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
+import React from 'react';
 
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
@@ -11,7 +9,7 @@ import { Mapping, Theme, Theming } from "services/theme.service";
 import { appMappings, appThemes } from "app/app-theming";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "components/status-bar.component";
-
+import { appLoading } from "app/app-loading.component";
 
 const defaultConfig: { mapping: Mapping, theme: Theme } = {
     mapping: 'eva',
@@ -23,29 +21,9 @@ const App: React.FC<{ mapping: Mapping, theme: Theme }> = ({ mapping, theme }) =
     const [mappingContext, currentMapping] = Theming.useMapping(appMappings, mapping);
     const [themeContext, currentTheme] = Theming.useTheming(appThemes, mapping, theme);
 
-    const [appIsReady, setAppIsReady] = React.useState(false);
+    const appIsReady = appLoading();
 
-    useEffect(() => {
-        async function prepare() {
-            try {
-                await SplashScreen.preventAutoHideAsync();
-
-                await Font.loadAsync({
-                    'barlow-regular': require('../assets/fonts/Barlow-Regular.ttf'),
-                    'barlow-bold': require('../assets/fonts/Barlow-Bold.ttf'),
-                });
-            } catch (e) {
-                console.warn(e);
-            } finally {
-                setAppIsReady(true);
-                await SplashScreen.hideAsync();
-            }
-        }
-
-        prepare();
-    }, []);
-
-    if (!appIsReady) {
+    if(!appIsReady){
         return null;
     }
 
