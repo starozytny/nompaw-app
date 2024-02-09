@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View } from "react-native";
+import { SafeAreaView } from "react-native";
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -54,9 +54,9 @@ const HomeStack = () => (
 )
 
 export const AppNavigator = () => (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
         <NavigationContainer theme={DarkKittenTheme}>
             <HomeStack />
         </NavigationContainer>
-    </View>
+    </SafeAreaView>
 );

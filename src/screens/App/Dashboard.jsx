@@ -1,8 +1,8 @@
 import React from "react";
 import * as SecureStore from 'expo-secure-store';
 
-import { Text, SafeAreaView } from "react-native";
-import { Divider, Icon, Layout, TopNavigation, TopNavigationAction } from "@ui-kitten/components";
+import { SafeAreaView } from "react-native";
+import { Divider, Icon, Layout, TopNavigation, TopNavigationAction, Text } from "@ui-kitten/components";
 
 const BackIcon = (props) => (
     <Icon {...props} name='arrow-back' />
