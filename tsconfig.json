@@ -6,9 +6,8 @@
       "*": [
         "src/*"
       ],
-      "@screens/*": [
-        "src/screens/*"
-      ]
+      "@app/*": ["src/app/*"],
+      "@screens/*": ["src/screens/*"]
     }
   }
 }
