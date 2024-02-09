@@ -11,11 +11,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "components/status-bar.component";
 import { appLoading } from "app/app-loading.component";
 
-const defaultConfig: { mapping: Mapping, theme: Theme } = {
-    mapping: 'eva',
-    theme: 'dark',
-};
-
 const App: React.FC<{ mapping: Mapping, theme: Theme }> = ({ mapping, theme }) => {
 
     const [mappingContext, currentMapping] = Theming.useMapping(appMappings, mapping);
