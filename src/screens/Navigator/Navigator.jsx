@@ -1,12 +1,20 @@
 import React from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { LoginScreen } from "screens/Security/LoginScreen";
 import { Dashboard } from "screens/App/Dashboard";
 
 const { Navigator, Screen } = createStackNavigator();
+
+const DarkKittenTheme = {
+    ...DarkTheme,
+    colors: {
+        ...DarkTheme.colors,
+        background: '#222B45',
+    },
+};
 
 const HomeNavigator = () => (
     <Navigator screenOptions={{headerShown: false}}>
@@ -16,7 +24,7 @@ const HomeNavigator = () => (
 );
 
 export const AppNavigator = () => (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkKittenTheme}>
         <HomeNavigator/>
     </NavigationContainer>
 );
