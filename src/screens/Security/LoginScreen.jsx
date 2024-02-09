@@ -59,10 +59,8 @@ export const LoginScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <TopNavigation title='Nompaw 👋' alignment='center'/>
-            <Divider/>
             <Layout style={styles.container}>
-                <Text style={styles.title} category="h1">Espace membre 🔒</Text>
+                <Text style={styles.title} category="h1">Nompaw 🔒</Text>
                 <Text style={styles.subtitle}>
                     Utilise ton identifiant et mot de passe pour accéder à ton espace !
                 </Text>
@@ -92,8 +90,10 @@ export const LoginScreen = ({ navigation }) => {
                 />
                 <Button onPress={handleLogin}
                         accessoryLeft={loading ? LoadingIndicator : null}
+                        style={styles.button}
+                        size='giant'
                 >
-                    Se connecter
+                    Accéder à mon espace
                 </Button>
             </Layout>
         </SafeAreaView>
@@ -121,5 +121,9 @@ const styles = StyleSheet.create({
     },
     spinner: {
         color: 'white'
+    },
+    button: {
+        width: '100%',
+        marginTop: 12,
     }
 });
